@@ -1,0 +1,1 @@
+Stole things from https://github.com/lean/phaser-es6-webpack if you need anything.
