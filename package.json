@@ -33,14 +33,7 @@
   },
   "dependencies": {
     "phaser-ce": "^2.11.0",
-    "webfontloader": "^1.6.28"
-  },
-  "cordova": {
-    "platforms": [
-      "browser"
-    ],
-    "plugins": {
-      "cordova-plugin-whitelist": {}
-    }
+    "webfontloader": "^1.6.28",
+    "webpack-cli": "^3.2.1"
   }
 }
