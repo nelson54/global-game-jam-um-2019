@@ -9,5 +9,4 @@ RUN npm install --prod
 
 EXPOSE 3000
 
-#RUN npm exec webpack
-CMD echo "Cool."
+CMD npm run dev
