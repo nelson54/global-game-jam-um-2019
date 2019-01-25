@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -p 3000:3000 -v $PWD:/app node-game
+docker run -p -it 3000:3000 -v $PWD:/app node-game
