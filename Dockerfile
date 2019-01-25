@@ -1,5 +1,7 @@
 FROM mhart/alpine-node:10
 
+COPY ./ /app
+
 WORKDIR /app
 
 # If you have native dependencies, you'll need extra tools
@@ -7,4 +9,6 @@ WORKDIR /app
 
 EXPOSE 3000
 
-CMD npm install && npm run dev
+RUN npm install
+
+CMD npm run dev
