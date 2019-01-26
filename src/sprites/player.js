@@ -9,7 +9,18 @@ class Player extends Phaser.Sprite {
     this.health = 100;
     this.movementSpeed = 4;
 
-    game.add.existing(this)
+    this.gun = game.add.emitter(this.centerX, this.centerY);
+
+    this.gun.setXSpeed(0, 0);
+    this.gun.setYSpeed(-100, -100);
+    this.gun.makeParticles('normal-bullet', 1, 1, false, true);
+    this.gun.gravity = 0;
+
+
+    this.gun.start(false, 5000, 250, 5);
+
+
+    game.add.existing(this);
     this.healthText = game.add.text(
       text_x,
       text_y,
@@ -19,10 +30,10 @@ class Player extends Phaser.Sprite {
 
   set weapon(new_weapon) {
     if (this._weapon) {
-      this._weapon.unequipFrom(this);
+      this.removeChild(this._weapon);
     }
     if (new_weapon) {
-      new_weapon.equipTo(this);
+      this.addChild(new_weapon)
     }
     this._weapon = new_weapon;
   }
