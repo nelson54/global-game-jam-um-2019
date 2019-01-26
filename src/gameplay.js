@@ -1,6 +1,7 @@
 var Phaser = require('phaser-ce');
 var Player = require('./sprites/player');
 var Gun = require('./gun');
+const { gunFactoryInstance, gunTypes } = require('./gun-factory');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -23,22 +24,23 @@ class Gameplay extends Phaser.State {
     // END
 
     this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
-    this.player1.weapon = new Gun(this.game, 'normal-bullet');
+    this.player1.weapon = gunFactoryInstance.makeGun(this.game, gunTypes.BASE_GUN);
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
-    this.player2.weapon = new Gun(this.game, 'normal-bullet');
+    //this.player2.weapon = gunFactoryInstance.makeGun(this.game, gunTypes.BASE_GUN);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
     this.time.advancedTiming = true;
     this.game.input.onDown.add(() => {
       console.log("down");
-      this.player1.weapon.use();
+      this.player1.weapon.start(false, 5000, 500);
+      //this.player1.weapon.emitParticle();
     });
 
     this.game.input.onUp.add(()=> {
       console.log("up");
-      this.player1.weapon.end();
+      //this.player1.weapon.end();
     });
 
   }

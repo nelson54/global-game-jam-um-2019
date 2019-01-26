@@ -1,5 +1,5 @@
-var Phaser = require('phaser-ce');
-var Gameplay = require('./gameplay');
+const Phaser = require('phaser-ce');
+const Gameplay = require('./gameplay');
 
 class JamGame extends Phaser.Game {
   constructor() {
