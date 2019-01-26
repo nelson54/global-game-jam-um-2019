@@ -15,15 +15,29 @@ class Gameplay extends Phaser.State {
     // bed.enableBody = true;
     // bed.body.immovable = true;
 
-    this.player1 = new Player(this.game, this.game.world.centerX, this.game.world.centerY, 'player-1');
+    // THIS CODE SHOULDN'T BE RUN HERE!
+    // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
+    this.input.gamepad.start();
+    this.game.pad1 = this.input.gamepad.pad1;
+    // END
 
+    this.player1 = new Player(this.game, this.game.world.centerX, this.game.world.centerY, 'player-1');
     this.player1.weapon = new Gun(this.game, 'normal-bullet');
+
+    // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
   }
 
   update() {
-    if (this.game.input.activePointer.isDown) {
-      this.player1.weapon.use(); // named thusly because not all weapons are necessarily guns
-    }
+
+    this.game.input.onDown.add(() => {
+      this.player1.weapon.use();
+    });
+
+    this.game.input.onUp.add(()=> {
+      this.player1.weapon.use();
+    });
+
+    //console.log(this.game.pad1);
   }
 }
 
