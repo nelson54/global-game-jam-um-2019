@@ -14,7 +14,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
 
-    //this.game.load.audio('snap', 'assets/audio/snap.mp3');
+    this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('boop', 'assets/audio/boop.ogg');
   }
 
