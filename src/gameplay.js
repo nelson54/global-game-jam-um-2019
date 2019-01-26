@@ -25,6 +25,8 @@ class Gameplay extends Phaser.State {
     this.player1.weapon = new Gun(this.game, 'normal-bullet');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
+
+    this.time.advancedTiming = true;
   }
 
   update() {
@@ -38,6 +40,13 @@ class Gameplay extends Phaser.State {
     });
 
     //console.log(this.game.pad1);
+  }
+
+  render() {
+    this.game.debug.text(
+      String(this.game.time.fps),
+      12,
+      12);
   }
 }
 
