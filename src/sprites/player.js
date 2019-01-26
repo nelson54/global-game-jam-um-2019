@@ -8,12 +8,13 @@ class Player extends Phaser.Sprite {
     this.scale.set(.5);
     this.weapon = null;
     this.health = 100;
-    this.movementSpeed = 4;
+    this.movementSpeed = 300;
 
     game.physics.arcade.enable(this);
 
     this.enableBody = true;
     this.body.collideWorldBounds=true;
+    this.body.setCircle(this.width);
 
     game.add.existing(this);
 
@@ -50,8 +51,8 @@ class Player extends Phaser.Sprite {
     super.update();
 
     if (this.input) {
-      this.x += this.input.strafe.x * this.movementSpeed;
-      this.y += this.input.strafe.y * this.movementSpeed;
+      this.body.velocity.x = this.input.strafe.x * this.movementSpeed;
+      this.body.velocity.y = this.input.strafe.y * this.movementSpeed;
 
       if (this.input.lookMagnitude > 0) {
         let look = this.input.lookNormalized;
