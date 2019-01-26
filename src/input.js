@@ -16,8 +16,8 @@ class XBoxController {
   }
 
   get look() {
-    let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X);
-    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y);
+    let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X);
+    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y);
     return {
       x: xValue ? xValue : 0.0,
       y: yValue ? yValue : 0.0,
@@ -42,8 +42,8 @@ class XBoxController {
   }
 
   get strafe() {
-    let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X);
-    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y);
+    let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X);
+    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y);
     return {
       x: xValue ? xValue : 0.0,
       y: yValue ? yValue : 0.0,
