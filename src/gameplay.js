@@ -1,6 +1,7 @@
-var Phaser = require('phaser-ce');
-var Player = require('./sprites/player');
-var Gun = require('./gun');
+const Phaser = require('phaser-ce');
+const Player = require('./sprites/player');
+const Gun = require('./gun');
+const Pickup = require('./sprites/pickup');
 
 class Gameplay extends Phaser.State {
   preload() {
