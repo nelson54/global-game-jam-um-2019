@@ -7,6 +7,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
     super(game, 100, -100);
 
     this.particleClass = Bullet;
+    this.maxParticles = 1000;
 
     this.makeParticles();
     this.gravity = 0;
@@ -14,7 +15,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
     this.sound = game.add.audio(sound);
     this.sound.allowMultiple = true;
 
-    this.bulletSpeed = 500;
+    this.bulletSpeed = 800;
     this.cooldown = 200;
 
     game.add.existing(this);
