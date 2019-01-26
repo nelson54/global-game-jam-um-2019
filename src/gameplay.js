@@ -25,17 +25,19 @@ class Gameplay extends Phaser.State {
     this.player1.weapon = new Gun(this.game, 'normal-bullet');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
-  }
-
-  update() {
 
     this.game.input.onDown.add(() => {
+      console.log("down");
       this.player1.weapon.use();
     });
 
     this.game.input.onUp.add(()=> {
-      this.player1.weapon.use();
+      console.log("up");
+      this.player1.weapon.end();
     });
+  }
+
+  update() {
 
     //console.log(this.game.pad1);
   }

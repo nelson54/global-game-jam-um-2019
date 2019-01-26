@@ -4,12 +4,13 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   constructor(game, bullet) {
     super(game);
 
-    this.makeParticles('normal-bullet', 1, 5, false, true);
-    this.gravity = 0;
-    this.particleAnchor.set(.5, .5);
-    this.setXSpeed(0, 0);
-    this.setYSpeed(-100, -100);
+    this.minSpeed = 100;
+    this.maxSpeed = 100;
+    this.angle = 0;
+    this.makeParticles('normal-bullet', 0, 5, false, true);
 
+    //this.gravity = 0;
+    this.particleAnchor.set(.5, .5);
 
     game.add.existing(this);
   }
@@ -23,8 +24,16 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   }
 
   use() {
-    //this.emitParticle();
-    this.start(false, 5000, 500, 5);
+
+    this.emitParticle();
+
+
+    //this.flow(1000, 250, 5, 1, false);
+    //this.start(false, 5000, 500, 100)
+  }
+
+  end() {
+    //this.flow(100, 0, 0, 0, true);
   }
 }
 
