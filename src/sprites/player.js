@@ -9,9 +9,12 @@ class Player extends Phaser.Sprite {
     this.weapon = null;
     this.health = 100;
     this.movementSpeed = 4;
-    this.enableBody = true;
 
     game.physics.arcade.enable(this);
+
+    this.enableBody = true;
+    this.body.collideWorldBounds=true;
+
     game.add.existing(this);
 
     this.healthText = game.add.text(
