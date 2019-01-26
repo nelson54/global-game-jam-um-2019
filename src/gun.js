@@ -1,11 +1,13 @@
 var Phaser = require('phaser-ce');
 
 class Gun extends Phaser.Particles.Arcade.Emitter {
-  constructor(game, bullet) {
+  constructor(game, bullet, sound) {
     super(game);
 
     this.makeParticles('normal-bullet');
     this.gravity = 0;
+
+    this.sound = game.add.audio(sound);
 
     this.bulletSpeed = 500;
     this.cooldown = 200;
@@ -24,6 +26,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   use() {
     if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
       this.emitParticle();
+      this.sound.play();
       this._lastFire = Date.now();
     }
   }
