@@ -60,6 +60,11 @@ class Gameplay extends Phaser.State {
       this.frame = 0;
     }
     this.frame += 1;
+
+    if(!this.player1.alive || !this.player2.alive) {
+      this.game.state.start('countdown');
+    }
+
   }
 
   render() {
