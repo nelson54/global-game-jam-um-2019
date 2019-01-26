@@ -25,10 +25,11 @@ class Gameplay extends Phaser.State {
     this.game.add.tileSprite(0, 0, 1024, 768, 'carpet');
 
     var bed = this.game.add.sprite(20, 20, "bed");
-    // bed.enableBody = true;
-    // bed.body.immovable = true;
-
     var desk = this.game.add.sprite(850, 500, "desk");
+
+    this.furniture = this.game.add.physicsGroup();
+    this.furniture.addMultiple([bed, desk]);
+    this.furniture.setAll('body.immovable', true);
 
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
@@ -45,6 +46,9 @@ class Gameplay extends Phaser.State {
     this.player1.enemy = this.player2;
     this.player2.enemy = this.player1;
 
+    this.players = this.game.add.physicsGroup();
+    this.players.addMultiple([this.player1, this.player2]);
+
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
     this.recording = this.game.add.audio('boop');
 
@@ -60,6 +64,9 @@ class Gameplay extends Phaser.State {
       this.frame = 0;
     }
     this.frame += 1;
+
+    this.game.physics.arcade.collide(this.player1, this.player2);
+    this.game.physics.arcade.collide(this.players, this.furniture);
   }
 
   render() {
