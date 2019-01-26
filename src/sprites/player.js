@@ -44,6 +44,8 @@ class Player extends Phaser.Sprite {
   }
 
   update() {
+    super.update();
+
     if (this.input) {
       this.x += this.input.strafe.x * this.movementSpeed;
       this.y += this.input.strafe.y * this.movementSpeed;

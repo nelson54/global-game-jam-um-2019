@@ -47,8 +47,6 @@ class Gameplay extends Phaser.State {
       this.frame = 0;
     }
     this.frame += 1;
-
-    this.player1.update();
   }
 
   render() {
