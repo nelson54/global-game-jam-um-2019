@@ -43,8 +43,15 @@ class Gameplay extends Phaser.State {
   }
 
   render() {
+    var renderTypes = {};
+    renderTypes[Phaser.WEBGL] = "WEBGL";
+    renderTypes[Phaser.CANVAS] = "CANVAS";
+    renderTypes[Phaser.AUTO] = "AUTO";
+    renderTypes[Phaser.HEADLESS] = "HEADLESS";
     this.game.debug.text(
-      String(this.game.time.fps),
+      String(this.game.time.fps) +
+        " FPS / " +
+        renderTypes[this.game.renderType],
       12,
       12);
   }
