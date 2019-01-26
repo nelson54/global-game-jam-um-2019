@@ -7,6 +7,8 @@ const Input = require('../input');
 
 class Gameplay extends Phaser.State {
   preload() {
+    this.game.state.add('countdown', new (require('./countdown'))());
+
     this.game.load.image('player-1', '/assets/sprites/player-1.png');
     this.game.load.image('player-2', '/assets/sprites/player-2.png');
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');

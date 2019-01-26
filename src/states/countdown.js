@@ -4,7 +4,7 @@ const Phaser = require('phaser-ce'),
 class Countdown extends Phaser.State {
   preload() {
 
-    this.game.state.add('default', new Gameplay());
+    this.game.state.add('default', new (require('./gameplay'))());
     this.game.load.image('replay', '/assets/sprites/replay.png');
 
     this.game.load.image('start', '/assets/sprites/start.png');
