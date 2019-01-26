@@ -27,10 +27,6 @@ class Gameplay extends Phaser.State {
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
     this.time.advancedTiming = true;
-  }
-
-  update() {
-
     this.game.input.onDown.add(() => {
       console.log("down");
       this.player1.weapon.use();
@@ -40,7 +36,9 @@ class Gameplay extends Phaser.State {
       console.log("up");
       this.player1.weapon.end();
     });
+
   }
+
 
   update() {
 

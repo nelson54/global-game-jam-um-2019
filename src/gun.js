@@ -6,8 +6,8 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
 
     this.minSpeed = 100;
     this.maxSpeed = 100;
-    this.angle = 0;
-    this.makeParticles('normal-bullet', 0, 5, false, true);
+    this.angle = .5;
+    this.makeParticles('normal-bullet', 0, 1000, false, true);
 
     //this.gravity = 0;
     this.particleAnchor.set(.5, .5);
