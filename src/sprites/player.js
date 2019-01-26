@@ -1,8 +1,13 @@
 var Phaser = require("phaser-ce");
 
-class PlayerSprite extends Phaser.Sprite {
+class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
 
+    game.add.existing(this)
   }
 }
+
+
+module.exports = Player;
+
