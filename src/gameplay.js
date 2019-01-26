@@ -13,6 +13,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('bed', 'assets/sprites/bed.png');
     this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
+    this.game.load.audio('boop', 'assets/audio/boop.ogg');
   }
 
   create() {
@@ -39,6 +40,7 @@ class Gameplay extends Phaser.State {
     this.player2.enemy = this.player1;
 
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
+    this.recording = this.game.add.audio('boop');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
