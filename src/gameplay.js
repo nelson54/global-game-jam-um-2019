@@ -11,6 +11,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('player-2', '/assets/sprites/player-2.png');
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('bed', 'assets/sprites/bed.png');
+    this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
   }
 
@@ -19,6 +20,8 @@ class Gameplay extends Phaser.State {
     var bed = this.game.add.sprite(20, 20, "bed");
     // bed.enableBody = true;
     // bed.body.immovable = true;
+
+    var desk = this.game.add.sprite(850, 500, "desk");
 
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
