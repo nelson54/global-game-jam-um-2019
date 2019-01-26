@@ -1,6 +1,7 @@
 var Phaser = require('phaser-ce');
 var Player = require('./sprites/player');
 var Gun = require('./gun');
+var Pickup = require('./sprites/pickup');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -8,6 +9,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('player-2', '/assets/sprites/player-2.png');
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('bed', 'assets/sprites/bed.png');
+    this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
   }
 
   create() {
@@ -27,6 +29,8 @@ class Gameplay extends Phaser.State {
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
     this.player2.weapon = new Gun(this.game, 'normal-bullet');
+
+    var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
