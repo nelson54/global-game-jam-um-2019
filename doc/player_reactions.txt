@@ -1,0 +1,6 @@
+# Player sounds
+Hurt i.e. oww.
+Win i.e. pffff
+Item pickup i.e. mine
+Select this character i.e. yeah whatever
+
