@@ -29,6 +29,10 @@ class Player extends Phaser.Sprite {
   get weapon() {
     return this._weapon;
   }
+
+  update() {
+    this.healthText.text = this.health;
+  }
 }
 
 
