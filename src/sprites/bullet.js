@@ -1,24 +1,26 @@
-var Phaser = require('phaser-ce');
+let Phaser = require('phaser-ce');
 
 function hit(player, bullet) {
   bullet.kill();
   player.hurt(bullet.damage);
 }
 
-class Bullet extends Phaser.Sprite {
-  constructor(game, player, playerHater, damage, key) {
-    super(game, player.x, player.y, key);
-    this.damage = damage;
-    game.physics.arcade.enable(this);
-    this.body.velocity = new Phaser.Point(200, 0);
-    this.enableBody = true;
-    this.playerHater = playerHater;
+class Bullet extends Phaser.Particle {
+  constructor(game, x, y, key) {
+    super(game, x, y, 'normal-bullet');
+    this.damage = 10;
+    //game.physics.arcade.enable(this);
+    //this.body.velocity = new Phaser.Point(200, 0);
 
-    game.add.existing(this);
+    //game.add.existing(this);
   }
 
   update() {
-    this.game.physics.arcade.overlap(this.playerHater, this, hit, null, this);
+    if(this.alive) {
+      if(this.overlap(this.parent.player.enemy)) {
+        hit(this.parent.player.enemy, this);
+      }
+    }
   }
 }
 

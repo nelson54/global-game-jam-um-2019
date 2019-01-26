@@ -1,13 +1,18 @@
-var Phaser = require('phaser-ce');
+const Phaser = require('phaser-ce'),
+  Bullet = require('./sprites/bullet');
+
 
 class Gun extends Phaser.Particles.Arcade.Emitter {
   constructor(game, bullet, sound) {
-    super(game);
+    super(game, 100, -100);
 
-    this.makeParticles('normal-bullet');
+    this.particleClass = Bullet;
+
+    this.makeParticles();
     this.gravity = 0;
 
     this.sound = game.add.audio(sound);
+    this.sound.allowMultiple = true;
 
     this.bulletSpeed = 500;
     this.cooldown = 200;
@@ -38,6 +43,8 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
 
       this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.rotation) * this.bulletSpeed, -Math.cos(this.player.rotation) * this.bulletSpeed);
       this.minParticleSpeed = this.maxParticleSpeed;
+
+      this.children.forEach((particle) => particle.update())
     }
   }
 }

@@ -14,7 +14,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
 
-    this.game.load.audio('snap', 'assets/audio/snap.mp3');
+    //this.game.load.audio('snap', 'assets/audio/snap.mp3');
+    this.game.load.audio('boop', 'assets/audio/boop.ogg');
   }
 
   create() {
@@ -30,14 +31,18 @@ class Gameplay extends Phaser.State {
     this.input.gamepad.start();
 
     this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
-    this.player1.weapon = new Gun(this.game, 'normal-bullet', 'snap');
+    this.player1.weapon = new Gun(this.game, 'normal-bullet', 'boop');
     this.player1.input = new Input.XBoxController(this.input.gamepad.pad1);
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
-    this.player2.weapon = new Gun(this.game, 'normal-bullet', 'snap');
+    this.player2.weapon = new Gun(this.game, 'normal-bullet', 'boop');
     this.player2.input = new Input.XBoxController(this.input.gamepad.pad2);
 
+    this.player1.enemy = this.player2;
+    this.player2.enemy = this.player1;
+
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
+    this.recording = this.game.add.audio('boop');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
@@ -48,7 +53,6 @@ class Gameplay extends Phaser.State {
 
   update() {
     if(this.frame >= 30) {
-      new Bullet(this.game, this.player1, this.player2, 66, 'normal-bullet');
       this.frame = 0;
     }
     this.frame += 1;
