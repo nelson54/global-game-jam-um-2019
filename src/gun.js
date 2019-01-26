@@ -4,37 +4,38 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   constructor(game, bullet) {
     super(game);
 
-    this.makeParticles('normal-bullet', 0, 1000, false, true);
-    this.setXSpeed(100, 100);
-    this.setYSpeed(-100, -100);
-
-    //this.maxParticleSpeed = 100;
-
+    this.makeParticles('normal-bullet');
     this.gravity = 0;
-    this.particleAnchor.set(.5, .5);
+
+    this.bulletSpeed = 500;
+    this.cooldown = 200;
 
     game.add.existing(this);
   }
 
   equipTo(player) {
-    player.addChild(this);
+    this.player = player;
   }
 
   unequipFrom(player) {
-    player.removeChild(this);
+    this.player = null;
   }
 
   use() {
-
-    this.emitParticle();
-
-
-    //this.flow(1000, 250, 5, 1, false);
-    //this.start(false, 5000, 500, 100)
+    if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
+      this.emitParticle();
+      this._lastFire = Date.now();
+    }
   }
 
-  end() {
-    //this.flow(100, 0, 0, 0, true);
+  update() {
+    if (this.player) {
+      this.x = this.player.x;
+      this.y = this.player.y;
+
+      this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.rotation) * this.bulletSpeed, -Math.cos(this.player.rotation) * this.bulletSpeed);
+      this.minParticleSpeed = this.maxParticleSpeed;
+    }
   }
 }
 

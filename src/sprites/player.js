@@ -1,4 +1,5 @@
-var Phaser = require('phaser-ce');
+const Phaser = require('phaser-ce');
+const Input = require('../input');
 
 class Player extends Phaser.Sprite {
   constructor(game, x, y, text_x, text_y, text_color, key) {
@@ -9,18 +10,8 @@ class Player extends Phaser.Sprite {
     this.health = 100;
     this.movementSpeed = 4;
 
-    this.gun = game.add.emitter(this.centerX, this.centerY);
-
-    this.gun.setXSpeed(0, 0);
-    this.gun.setYSpeed(-100, -100);
-    this.gun.makeParticles('normal-bullet', 1, 1, false, true);
-    this.gun.gravity = 0;
-
-
-    this.gun.start(false, 5000, 250, 5);
-
-
     game.add.existing(this);
+
     this.healthText = game.add.text(
       text_x,
       text_y,
@@ -30,10 +21,10 @@ class Player extends Phaser.Sprite {
 
   set weapon(new_weapon) {
     if (this._weapon) {
-      this.removeChild(this._weapon);
+      this._weapon.unequipFrom(this);
     }
     if (new_weapon) {
-      this.addChild(new_weapon)
+      new_weapon.equipTo(this)
     }
     this._weapon = new_weapon;
   }
@@ -52,9 +43,16 @@ class Player extends Phaser.Sprite {
       if (this.input.lookMagnitude > 0) {
         let look = this.input.lookNormalized;
         this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
-
-        console.log(look);
       }
+
+      if (this.input.isDown(Input.Buttons.PRIMARY)) {
+        this.weapon.use();
+      }
+    }
+
+    // Bring our weapon with us
+    if (this.weapon) {
+      this.weapon.update();
     }
   }
 }
