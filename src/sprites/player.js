@@ -9,7 +9,9 @@ class Player extends Phaser.Sprite {
     this.weapon = null;
     this.health = 100;
     this.movementSpeed = 4;
+    this.enableBody = true;
 
+    game.physics.arcade.enable(this);
     game.add.existing(this);
 
     this.healthText = game.add.text(
@@ -17,6 +19,7 @@ class Player extends Phaser.Sprite {
       text_y,
       null,
       {"fill": text_color, "align": "center", "font": "bold 20pt Comic Sans MS"});
+    this.hurt(0); // Get things started.
   }
 
   set weapon(new_weapon) {
@@ -33,9 +36,14 @@ class Player extends Phaser.Sprite {
     return this._weapon;
   }
 
-  update() {
+  hurt(amount) {
+    this.health -= amount;
+    if(this.health <= 0)
+      this.kill();
     this.healthText.text = this.health;
+  }
 
+  update() {
     if (this.input) {
       this.x += this.input.strafe.x * this.movementSpeed;
       this.y += this.input.strafe.y * this.movementSpeed;

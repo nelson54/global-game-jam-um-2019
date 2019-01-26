@@ -1,0 +1,12 @@
+# Generally blank screen, or perhaps a background of a bedroom.
+spoken: Choose your character
+
+# Center-left side of screen:
+text: Player 1
+<icon of player character, scaled to 4x>
+
+# Center-right side of screen:
+text: Player 2
+<icon of player character, scaled to 4x)
+
+# Are all versions of the player two character choice just re-colored versions of the p1 sprites? Or are there just four sprites total, and whichever sprite the other player is on is not in the pool for the current player?

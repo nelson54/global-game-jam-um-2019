@@ -1,4 +1,5 @@
 const Phaser = require('phaser-ce');
+const Bullet = require('./sprites/bullet');
 const Player = require('./sprites/player');
 const Gun = require('./gun');
 const Pickup = require('./sprites/pickup');
@@ -14,7 +15,7 @@ class Gameplay extends Phaser.State {
   }
 
   create() {
-    // this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
     var bed = this.game.add.sprite(20, 20, "bed");
     // bed.enableBody = true;
     // bed.body.immovable = true;
@@ -35,9 +36,17 @@ class Gameplay extends Phaser.State {
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
     this.time.advancedTiming = true;
+
+    this.frame = 0;
   }
 
   update() {
+    if(this.frame >= 30) {
+      new Bullet(this.game, this.player1, this.player2, 66, 'normal-bullet');
+      this.frame = 0;
+    }
+    this.frame += 1;
+
     this.player1.update();
   }
 

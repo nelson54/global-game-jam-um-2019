@@ -1,0 +1,8 @@
+# General Sounds
+Shoot gun i.e. pew
+Hit by gun i.e. blam
+Throw grenade i.e. woosh
+Grenade explode i.e. kapow
+Swing pillow i.e. whistle
+Hit by pillow i.e. thwump
+
