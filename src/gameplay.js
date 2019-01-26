@@ -35,6 +35,9 @@ class Gameplay extends Phaser.State {
     this.player2.weapon = new Gun(this.game, 'normal-bullet');
     this.player2.input = new Input.XBoxController(this.input.gamepad.pad2);
 
+    this.player1.enemy = this.player2;
+    this.player2.enemy = this.player1;
+
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
@@ -46,7 +49,6 @@ class Gameplay extends Phaser.State {
 
   update() {
     if(this.frame >= 30) {
-      new Bullet(this.game, this.player1, this.player2, 66, 'normal-bullet');
       this.frame = 0;
     }
     this.frame += 1;
