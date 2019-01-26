@@ -11,11 +11,10 @@ class JamGame extends Phaser.Game {
         this.game.state.add('countdown', new Countdown());
       },
       create(){
-        this.game.state.start('countdown');
         this.input1 = new Input.XBoxController(this.input.gamepad.pad1);
         this.input2 = new Input.XBoxController(this.input.gamepad.pad2);
 
-
+        this.game.state.start('countdown');
       }
     });
 
