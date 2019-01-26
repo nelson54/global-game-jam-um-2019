@@ -56,9 +56,6 @@ class Player extends Phaser.Sprite {
       if (this.input.lookMagnitude > 0) {
         let look = this.input.lookNormalized;
         this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
-      }
-
-      if (this.input.isDown(Input.Buttons.PRIMARY)) {
         this.weapon.use();
       }
     }
