@@ -13,7 +13,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('player-2', '/assets/sprites/player-2.png');
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('carpet', 'assets/sprites/carpet.png');
-    this.game.load.image('bed', 'assets/sprites/bed.png');
+    this.game.load.image('bed1', 'assets/sprites/bed1.png');
+    this.game.load.image('bed2', 'assets/sprites/bed2.png');
     this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
 
@@ -26,11 +27,12 @@ class Gameplay extends Phaser.State {
 
     this.game.add.tileSprite(0, 0, 1024, 768, 'carpet');
 
-    var bed = this.game.add.sprite(20, 20, "bed");
+    var bed1 = this.game.add.sprite(20, 20, "bed1");
+    var bed2 = this.game.add.sprite(820, 20, "bed2");
     var desk = this.game.add.sprite(850, 500, "desk");
 
     this.furniture = this.game.add.physicsGroup();
-    this.furniture.addMultiple([bed, desk]);
+    this.furniture.addMultiple([bed1, bed2, desk]);
     this.furniture.setAll('body.immovable', true);
 
     // THIS CODE SHOULDN'T BE RUN HERE!
