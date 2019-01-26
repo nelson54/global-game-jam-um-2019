@@ -1,6 +1,7 @@
 var Phaser = require('phaser-ce');
 var Player = require('./sprites/player');
 var Gun = require('./gun');
+var Input = require('./input');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -19,11 +20,10 @@ class Gameplay extends Phaser.State {
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
     this.input.gamepad.start();
-    this.game.pad1 = this.input.gamepad.pad1;
-    // END
 
     this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
     this.player1.weapon = new Gun(this.game, 'normal-bullet');
+    this.player1.input = new Input.XBoxController(this.input.gamepad.pad1);
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
     this.player2.weapon = new Gun(this.game, 'normal-bullet');
@@ -31,22 +31,10 @@ class Gameplay extends Phaser.State {
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
     this.time.advancedTiming = true;
-    this.game.input.onDown.add(() => {
-      console.log("down");
-      this.player1.weapon.use();
-    });
-
-    this.game.input.onUp.add(()=> {
-      console.log("up");
-      this.player1.weapon.end();
-    });
-
   }
 
-
   update() {
-
-    //console.log(this.game.pad1);
+    this.player1.update();
   }
 
   render() {

@@ -7,6 +7,7 @@ class Player extends Phaser.Sprite {
     this.scale.set(.5);
     this.weapon = null;
     this.health = 100;
+    this.movementSpeed = 4;
 
     game.add.existing(this)
     this.healthText = game.add.text(
@@ -32,6 +33,18 @@ class Player extends Phaser.Sprite {
 
   update() {
     this.healthText.text = this.health;
+
+    if (this.input) {
+      this.x += this.input.strafe.x * this.movementSpeed;
+      this.y += this.input.strafe.y * this.movementSpeed;
+
+      if (this.input.lookMagnitude > 0) {
+        let look = this.input.lookNormalized;
+        this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
+
+        console.log(look);
+      }
+    }
   }
 }
 
