@@ -30,6 +30,7 @@ class Gameplay extends Phaser.State {
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
     this.player2.weapon = new Gun(this.game, 'normal-bullet');
+    this.player2.input = new Input.XBoxController(this.input.gamepad.pad2);
 
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
 
