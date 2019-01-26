@@ -14,3 +14,6 @@ class Gameplay extends Phaser.State {
 
   }
 }
+
+
+module.exports = Gameplay;
