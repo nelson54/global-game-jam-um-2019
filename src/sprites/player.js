@@ -1,4 +1,4 @@
-var Phaser = require("phaser-ce");
+var Phaser = require('phaser-ce');
 
 class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
@@ -11,4 +11,3 @@ class Player extends Phaser.Sprite {
 
 
 module.exports = Player;
-
