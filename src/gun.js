@@ -2,22 +2,8 @@ const Phaser = require('phaser-ce'),
   Bullet = require('./sprites/bullet');
 
 class Gun extends Phaser.Particles.Arcade.Emitter {
-  constructor(game, bullet, sound) {
+  constructor(game) {
     super(game, 100, -100);
-
-    this.particleClass = Bullet;
-    this.maxParticles = 1000;
-
-    this.makeParticles();
-    this.gravity = 0;
-
-    this.sound = game.add.audio(sound);
-    this.sound.allowMultiple = true;
-
-    this.bulletSpeed = 800;
-    this.cooldown = 200;
-
-    game.add.existing(this);
   }
 
   equipTo(player) {

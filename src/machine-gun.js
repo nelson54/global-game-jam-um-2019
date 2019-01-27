@@ -1,12 +1,12 @@
 const Phaser = require('phaser-ce');
 const Gun = require('./gun');
-const Bullet = require('./sprites/bullet');
+const WaterPellet = require('./sprites/water-pellet');
 
 class MachineGun extends Gun {
-  constructor(game, bullet) {
-    super(game, 100, -100);
+  constructor(game) {
+    super(game);
 
-    this.particleClass = Bullet;
+    this.particleClass = WaterPellet;
     this.maxParticles = 1000;
 
     this.makeParticles();

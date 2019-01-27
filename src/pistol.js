@@ -3,8 +3,8 @@ const Gun = require('./gun');
 const Bullet = require('./sprites/bullet');
 
 class Pistol extends Gun {
-  constructor(game, bullet) {
-    super(game, 100, -100);
+  constructor(game) {
+    super(game);
 
     this.particleClass = Bullet;
     this.maxParticles = 1000;

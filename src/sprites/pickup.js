@@ -6,7 +6,7 @@ class Pickup extends Phaser.Sprite {
     super(game, x, y, key);
 
     this.scale.set(2);
-    this.item = new MachineGun(this.game, 'normal-bullet');
+    this.item = new MachineGun(this.game);
     this.players = players; // TODO: Use a group!!!
     this.enableBody = true;
 
