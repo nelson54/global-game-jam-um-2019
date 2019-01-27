@@ -7,7 +7,7 @@ class PickupManager {
     this.group = game.add.group();
     this.gameState = game.state.getCurrentState();
     this.players = [this.gameState.player1, this.gameState.player2];
-    this.pickups = ['machine-gun-pickup', 'pistol-pickup', 'rocket-launcher-pickup'];
+    this.pickups = ['machine-gun-pickup', 'pistol-pickup', 'rocket-launcher-pickup', 'life'];
 
     this.gunConstructors = {
 
@@ -34,21 +34,21 @@ class PickupManager {
     this.group.forEachAlive((pickup) => pickup.kill());
 
     randomPickup = this.randomPickup();
-    this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
+    this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup], randomPickup === 'life');
 
     if(Math.random() > .2) {
       randomPickup = this.randomPickup();
-      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
+      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup], randomPickup === 'life');
     }
 
     if(Math.random() > .9) {
       randomPickup = this.randomPickup();
-      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
+      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup], randomPickup === 'life');
     }
   }
 
-  addPickup(location, randomPickup, Constructor) {
-    let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor);
+  addPickup(location, randomPickup, Constructor, isLife) {
+    let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor, isLife);
     this.group.add(pickup)
   }
 
