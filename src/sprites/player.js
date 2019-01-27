@@ -11,8 +11,8 @@ class Player extends Phaser.Sprite {
     this.health = 100;
     this.movementSpeed = 300;
 
-    this.pillow = new Pillow(game, -50, 30);
-    this.pillow.anchor.set(-2, 0.5);
+    this.pillow = new Pillow(game, -20, 30);
+    this.pillow.anchor.set(-1, 0.5);
     this.addChild(this.pillow);
     this.pillowSwinging = false;
     this.pillowSwing = game.add.tween(this.pillow);
