@@ -1,12 +1,12 @@
 var Phaser = require('phaser-ce');
-var Gun = require('../gun');
+var MachineGun = require('../machine-gun');
 
 class Pickup extends Phaser.Sprite {
   constructor(game, x, y, key, players) {
     super(game, x, y, key);
 
     this.scale.set(2);
-    this.item = new Gun(this.game, 'normal-bullet', 'snap');
+    this.item = new MachineGun(this.game, 'normal-bullet');
     this.players = players; // TODO: Use a group!!!
     this.enableBody = true;
 

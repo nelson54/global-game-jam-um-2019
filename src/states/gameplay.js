@@ -2,6 +2,7 @@ const Phaser = require('phaser-ce');
 const Bullet = require('../sprites/bullet');
 const Player = require('../sprites/player');
 const Gun = require('../gun');
+const Pistol = require('../pistol');
 const Pickup = require('../sprites/pickup');
 const Input = require('../input');
 
@@ -29,6 +30,10 @@ class Gameplay extends Phaser.State {
   }
 
   create() {
+    this.recording = this.game.add.audio('boop');
+    this.game.boop = this.recording;
+    this.game.snap = this.game.add.audio('snap');
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.add.tileSprite(0, 0, 1024, 768, 'carpet');
@@ -48,11 +53,11 @@ class Gameplay extends Phaser.State {
     let input2 = new Input.XBoxController(this.input.gamepad.pad2);
 
     this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
-    this.player1.weapon = new Gun(this.game, 'normal-bullet', 'boop');
+    this.player1.weapon = new Pistol(this.game, 'normal-bullet');
     this.player1.input = input1;
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
-    this.player2.weapon = new Gun(this.game, 'normal-bullet', 'boop');
+    this.player2.weapon = new Pistol(this.game, 'normal-bullet');
     this.player2.input = input2;
 
     this.player1.enemy = this.player2;
@@ -62,7 +67,6 @@ class Gameplay extends Phaser.State {
     this.players.addMultiple([this.player1, this.player2]);
 
     var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
-    this.recording = this.game.add.audio('boop');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
