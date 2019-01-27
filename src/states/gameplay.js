@@ -11,8 +11,6 @@ const PickupManager = require('../sprites/pickup-manager');
 
 class Gameplay extends Phaser.State {
   preload() {
-    this.game.state.add('countdown', new (require('./countdown'))());
-
     this.game.load.spritesheet('player-1', '/assets/sprites/player-1.png', 50, 99);
     this.game.load.spritesheet('player-2', '/assets/sprites/player-2.png', 50, 99);
 
