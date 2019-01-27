@@ -17,7 +17,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   use() {
     if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
       this.emitParticle();
-      this.sound.play();
+
       this._lastFire = Date.now();
     }
   }
@@ -30,7 +30,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
       this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.rotation) * this.bulletSpeed, -Math.cos(this.player.rotation) * this.bulletSpeed);
       this.minParticleSpeed = this.maxParticleSpeed;
 
-      this.children.forEach((particle) => particle.update())
+      this.forEachAlive((particle) => particle.update())
     }
   }
 }

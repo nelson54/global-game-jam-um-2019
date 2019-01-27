@@ -30,12 +30,35 @@ class Gameplay extends Phaser.State {
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
     this.game.load.audio('boop', 'assets/audio/boop.ogg');
+
+    this.game.load.audio('woosh', 'assets/audio/woosh.ogg');
+    this.game.load.audio('rocket-launch', 'assets/audio/rocket_launch.ogg');
+
+    this.game.load.audio('oof', 'assets/audio/oof.ogg');
+
+    this.game.load.audio('darkling', 'assets/audio/darkling.mp3');
   }
 
   create() {
+    this.game.backgroundMusic = this.game.add.audio('darkling');
+    this.game.backgroundMusic.repeats = true;
+    this.game.backgroundMusic.volume = .6;
+    this.game.backgroundMusic.play();
+
     this.recording = this.game.add.audio('boop');
     this.game.boop = this.recording;
+    this.game.boop.allowMultiple = true;
     this.game.snap = this.game.add.audio('machine-gun');
+    this.game.snap.allowMultiple = true;
+
+    this.game.woosh = this.game.add.audio('woosh');
+    this.game.woosh.allowMultiple = true;
+
+    this.game.oof = this.game.add.audio('oof');
+
+    this.game.rocketLaunch = this.game.add.audio('rocket-launch');
+    this.game.rocketLaunch.volume = 5;
+
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 

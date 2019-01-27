@@ -46,6 +46,7 @@ class Player extends Phaser.Sprite {
   }
 
   hurt(amount) {
+    this.game.oof.play();
     this.health -= amount;
     if(this.health <= 0)
       this.kill();

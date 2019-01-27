@@ -5,16 +5,21 @@ class Bullet extends Phaser.Particle {
   constructor(game, x, y, key='normal-bullet') {
     super(game, x, y, key);
     this.damage = 10;
+    this.collideWorldBounds=true;
   }
 
   hit(player) {
     if(player) player.hurt(this.damage);
     this.kill();
+
   }
 
   update() {
     if(this.alive) {
-
+      if(this.body.checkWorldBounds()) {
+        this.hit();
+        return;
+      }
 
       if (this.overlap(this.parent.player.enemy)) {
         this.hit(this.parent.player.enemy);

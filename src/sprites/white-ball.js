@@ -11,7 +11,8 @@ class WhiteBall extends Bullet {
 
   hit(player) {
     super.hit(player);
-    new WhiteBallEffect(this.game, this.x, this.y)
+    new WhiteBallEffect(this.game, this.x, this.y);
+    this.game.rocketLaunch.play();
   }
 }
 

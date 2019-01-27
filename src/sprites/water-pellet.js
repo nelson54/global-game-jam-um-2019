@@ -11,6 +11,7 @@ class WaterPellet extends Bullet {
   hit(player) {
     super.hit(player);
     new MachineGunEffect(this.game, this.x, this.y)
+    this.game.woosh.play();
   }
 }
 

@@ -7,13 +7,12 @@ class Pistol extends Gun {
     super(game);
 
     this.particleClass = WhiteBall;
-    this.maxParticles = 1000;
+    this.maxParticles = 100;
 
-    this.makeParticles();
+    this.makeParticles(undefined, undefined, undefined, undefined, true);
     this.gravity = 0;
 
     this.sound = game.boop;
-    this.sound.allowMultiple = true;
 
     this.bulletSpeed = 800;
     this.cooldown = 200;
