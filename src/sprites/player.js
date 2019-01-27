@@ -96,14 +96,14 @@ class Player extends Phaser.Sprite {
 
     // Flip depending on where we're looking
     if (this.look < 0 || this.look > Math.PI) {
-      this.scale.x = -1;
+      this.scale.x = -1 * this.scale.x * Math.sign(this.scale.x);
     } else {
-      this.scale.x = 1;
+      this.scale.x = 1 * this.scale.x * Math.sign(this.scale.x);
     }
     if (this.look > Math.PI / 2) {
-      this.pillow.scale.y = -1;
+      this.pillow.scale.y = -1 * this.pillow.scale.y * Math.sign(this.pillow.scale.y);
     } else {
-      this.pillow.scale.y = 1;
+      this.pillow.scale.y = 1 * this.pillow.scale.y * Math.sign(this.pillow.scale.y);
     }
 
     if (this.controller && this.controller.active) {
