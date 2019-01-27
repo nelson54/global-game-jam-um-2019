@@ -22,6 +22,10 @@ class Pickup extends Phaser.Sprite {
     this.kill();
   }
 
+  isSenescent() {
+    return true;
+  }
+
   kill() {
     game.add.tween(this)
       .to({alpha:0}, 500, "Linear")

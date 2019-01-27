@@ -20,6 +20,8 @@ class PickupManager {
 
     //  Set a TimerEvent to occur after 2 seconds
     this.timer.loop(5000, ()=> this.createRandomPickup());
+    this.timer.loop(5000, ()=> this.createRandomPickup());
+//    this.timer.loop(7500, ()=> this.createRandomPickup());
     this.timer.start();
   }
 
@@ -37,9 +39,6 @@ class PickupManager {
     let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor);
     this.group.add(pickup)
   }
-
-
-
 
   randomPickup() {
     return this.pickups[Math.floor(Math.random() * this.pickups.length)];
