@@ -30,12 +30,24 @@ class PickupManager {
   }
 
   createRandomPickup() {
+    let randomPickup, Constructor;
     this.group.forEachAlive((pickup) => pickup.kill());
 
-    let location = this.randomPlace(),
-    randomPickup = this.randomPickup(),
-    Constructor = this.gunConstructors[randomPickup];
+    randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
+    this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
 
+    if(Math.random() > .2) {
+      randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
+      this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
+    }
+
+    if(Math.random() > .9) {
+      randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
+      this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
+    }
+  }
+
+  addPickup(location, randomPickup, Constructor) {
     let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor);
     this.group.add(pickup)
   }
