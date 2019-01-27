@@ -6,7 +6,7 @@ class Pickup extends Phaser.Sprite {
     super(game, x, y, key);
 
     this.scale.set(0.75);
-    this.Constructor = GunConstructor;
+    this.GunConstructor = GunConstructor;
     let state = this.game.state.getCurrentState();
     this.players = [state.player1, state.player2];
     this.enableBody = true;
@@ -18,7 +18,7 @@ class Pickup extends Phaser.Sprite {
   }
 
   collect(player) {
-    player.weapon = (new this.GunConstructor(this.game)).item;
+    player.weapon = new this.GunConstructor(this.game);
     this.kill();
   }
 
@@ -31,7 +31,7 @@ class Pickup extends Phaser.Sprite {
 
   update() {
     for (let player of this.players) {
-      this.game.physics.arcade.overlap(player, this, this.collect, null, this.game);
+      this.game.physics.arcade.overlap(player, this, ()=>this.collect(player));
     }
   }
 }
