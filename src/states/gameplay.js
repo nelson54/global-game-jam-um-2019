@@ -73,28 +73,40 @@ class Gameplay extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.game.add.tileSprite(0, 0, 1024, 768, 'carpet');
+    this.game.add.tileSprite(0, 0, 1280, 720, 'carpet');
 
-    let bed1 = this.game.add.sprite(20, 20, "bed1");
-    let bed2 = this.game.add.sprite(820, 20, "bed2");
-    let desk = this.game.add.sprite(850, 500, "desk");
+    let bed1 = this.game.add.sprite(280, 120, "bed1");
+    bed1.scale.set(0.8);
+    let bed2 = this.game.add.sprite(900, 580, "bed2");
+    bed2.scale.set(0.8);
+    bed2.angle = 180;
 
-    let chair = this.game.add.sprite(760, 600, "chair");
+    let desk1 = this.game.add.sprite(150, 400, "desk");
+    desk1.scale.set(0.8);
+    desk1.angle = 270;
+    let desk2 = this.game.add.sprite(1100, 500, "desk");
+    desk2.scale.set(0.8);
+    desk2.angle = 90;
+
+    let chair1 = this.game.add.sprite(150, 475, "chair");
+    chair1.angle = 270;
+    let chair2 = this.game.add.sprite(1150, 350, "chair");
+    chair2.angle = 90;
 
     this.furniture = this.game.add.physicsGroup();
-    this.furniture.addMultiple([bed1, bed2, desk]);
+    this.furniture.addMultiple([bed1, bed2, desk1, desk2]);
     this.furniture.setAll('body.immovable', true);
+    this.furniture.setAll('anchor', new Phaser.Point(0.5, 0.5));
 
     this.pushable = this.game.add.physicsGroup();
-    this.pushable.addMultiple([chair]);
+    this.pushable.addMultiple([chair1, chair2]);
 
-    for (let i = 0 ; i < 3; i++)
-    {
-      let beanbag = this.game.add.sprite(i * 100 + 100, 600, "beanbag");
-      this.pushable.addMultiple([beanbag]);
-    }
+    this.pushable.addMultiple([
+      this.game.add.sprite(100, 600, "beanbag"),
+      this.game.add.sprite(200, 600, "beanbag")]);
 
     this.pushable.setAll('body.collideWorldBounds', true);
+    this.pushable.setAll('anchor', new Phaser.Point(0.5, 0.5));
 
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN

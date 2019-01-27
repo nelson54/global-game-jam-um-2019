@@ -6,7 +6,7 @@ const Input = require('./input');
 
 class JamGame extends Phaser.Game {
   constructor() {
-    super(1024, 768, Phaser.AUTO, document.querySelector('body'), {
+    super(1280, 720, Phaser.AUTO, document.querySelector('body'), {
       preload() {
         this.game.state.add('countdown', new Countdown());
       },
