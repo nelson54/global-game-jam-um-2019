@@ -5,6 +5,7 @@ const Gun = require('../gun');
 const Pistol = require('../pistol');
 const Pickup = require('../sprites/pickup');
 const Input = require('../input');
+const PickupManager = require('../sprites/pickup-manager');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -131,7 +132,8 @@ class Gameplay extends Phaser.State {
     this.players = this.game.add.physicsGroup();
     this.players.addMultiple([this.player1, this.player2]);
 
-    var machineGun = new Pickup(this.game, 720, 50, 'machine-gun-pickup', [this.player1, this.player2]);
+    this.pickupManager = new PickupManager(this.game);
+    //let machineGun = new Pickup(this.game, 720, 50, 'machine-gun-pickup');
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 
