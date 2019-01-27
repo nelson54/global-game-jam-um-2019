@@ -75,9 +75,9 @@ class Gameplay extends Phaser.State {
 
     this.game.add.tileSprite(0, 0, 1280, 720, 'carpet');
 
-    let bed1 = this.game.add.sprite(280, 120, "bed1");
+    let bed1 = this.game.add.sprite(280, 160, "bed1");
     bed1.scale.set(0.6);
-    let bed2 = this.game.add.sprite(900, 580, "bed2");
+    let bed2 = this.game.add.sprite(900, 560, "bed2");
     bed2.scale.set(0.6);
     bed2.angle = 180;
 
@@ -88,7 +88,7 @@ class Gameplay extends Phaser.State {
     desk2.scale.set(0.6);
     desk2.angle = 90;
 
-    let chair1 = this.game.add.sprite(150, 550, "chair");
+    let chair1 = this.game.add.sprite(150, 530, "chair");
     chair1.scale.set(0.6);
     chair1.angle = 270;
     let chair2 = this.game.add.sprite(1150, 380, "chair");
