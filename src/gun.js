@@ -27,7 +27,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
       this.x = this.player.x;
       this.y = this.player.y;
 
-      this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.rotation) * this.bulletSpeed, -Math.cos(this.player.rotation) * this.bulletSpeed);
+      this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.look) * this.bulletSpeed, -Math.cos(this.player.look) * this.bulletSpeed);
       this.minParticleSpeed = this.maxParticleSpeed;
 
       this.forEachAlive((particle) => particle.update())
