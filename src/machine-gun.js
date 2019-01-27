@@ -7,7 +7,7 @@ class MachineGun extends Gun {
     super(game);
 
     this.particleClass = WaterPellet;
-    this.maxParticles = 1000;
+    this.maxParticles = 10000;
 
     this.makeParticles();
     this.gravity = 0;
@@ -16,7 +16,7 @@ class MachineGun extends Gun {
     this.sound.allowMultiple = true;
 
     this.bulletSpeed = 1200;
-    this.cooldown = 20;
+    this.cooldown = 5;
 
     game.add.existing(this);
   }
