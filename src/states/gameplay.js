@@ -76,21 +76,23 @@ class Gameplay extends Phaser.State {
     this.game.add.tileSprite(0, 0, 1280, 720, 'carpet');
 
     let bed1 = this.game.add.sprite(280, 120, "bed1");
-    bed1.scale.set(0.8);
+    bed1.scale.set(0.6);
     let bed2 = this.game.add.sprite(900, 580, "bed2");
-    bed2.scale.set(0.8);
+    bed2.scale.set(0.6);
     bed2.angle = 180;
 
     let desk1 = this.game.add.sprite(150, 450, "desk");
-    desk1.scale.set(0.8);
+    desk1.scale.set(0.6);
     desk1.angle = 270;
-    let desk2 = this.game.add.sprite(1150, 500, "desk");
-    desk2.scale.set(0.8);
+    let desk2 = this.game.add.sprite(1150, 450, "desk");
+    desk2.scale.set(0.6);
     desk2.angle = 90;
 
     let chair1 = this.game.add.sprite(150, 550, "chair");
+    chair1.scale.set(0.6);
     chair1.angle = 270;
     let chair2 = this.game.add.sprite(1150, 380, "chair");
+    chair2.scale.set(0.6);
     chair2.angle = 90;
 
     this.furniture = this.game.add.physicsGroup();
@@ -117,11 +119,11 @@ class Gameplay extends Phaser.State {
     let input1 = new Input.XBoxController(this.input.gamepad.pad1);
     let input2 = new Input.XBoxController(this.input.gamepad.pad2);
 
-    this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
+    this.player1 = new Player(this.game, 100, 110, 16, 12, '#4b46ff', 'player-1');
     this.player1.weapon = new Pistol(this.game);
     this.player1.controller = input1;
 
-    this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
+    this.player2 = new Player(this.game, 1130, 640, 1280 - 80, 12, '#ff4c47', 'player-2');
     this.player2.weapon = new Pistol(this.game);
     this.player2.controller = input2;
 
@@ -131,7 +133,8 @@ class Gameplay extends Phaser.State {
     this.players = this.game.add.physicsGroup();
     this.players.addMultiple([this.player1, this.player2]);
 
-    var machineGun = new Pickup(this.game, 720, 50, 'machine-gun-pickup', [this.player1, this.player2]);
+    var machineGun = new Pickup(this.game, 640, 360, 'machine-gun-pickup', [this.player1, this.player2]);
+    machineGun.anchor = new Phaser.Point(0.5, 0.5);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 

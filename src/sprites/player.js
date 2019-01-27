@@ -4,8 +4,9 @@ const Pillow = require('./pillow');
 
 class Player extends Phaser.Sprite {
   constructor(game, x, y, text_x, text_y, text_color, key) {
-    super(game, game.world.centerX + x, game.world.centerY + y, key);
+    super(game, x, y, key);
     this.anchor.set(.5, .5);
+    this.scale.set(.5);
     this.weapon = null;
     this.health = 100;
     this.movementSpeed = 300;
