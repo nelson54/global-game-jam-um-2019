@@ -17,7 +17,7 @@ class Gun extends Phaser.Particles.Arcade.Emitter {
   use() {
     if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
       this.emitParticle();
-
+      this.sound.play();
       this._lastFire = Date.now();
     }
   }

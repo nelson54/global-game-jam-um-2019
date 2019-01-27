@@ -29,6 +29,7 @@ class Gameplay extends Phaser.State {
 
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
+
     this.game.load.audio('boop', 'assets/audio/boop.ogg');
 
     this.game.load.audio('woosh', 'assets/audio/woosh.ogg');
@@ -42,12 +43,14 @@ class Gameplay extends Phaser.State {
   create() {
     this.game.backgroundMusic = this.game.add.audio('darkling');
     this.game.backgroundMusic.repeats = true;
-    this.game.backgroundMusic.volume = .6;
+    this.game.backgroundMusic.volume = .4;
     this.game.backgroundMusic.play();
 
-    this.recording = this.game.add.audio('boop');
-    this.game.boop = this.recording;
-    this.game.boop.allowMultiple = true;
+    this.game.boop = this.recording = this.game.add.audio('boop');
+    this.recording.volume = 5;
+
+    this.recording.allowMultiple = true;
+
     this.game.snap = this.game.add.audio('machine-gun');
     this.game.snap.allowMultiple = true;
 
@@ -55,6 +58,7 @@ class Gameplay extends Phaser.State {
     this.game.woosh.allowMultiple = true;
 
     this.game.oof = this.game.add.audio('oof');
+    this.game.oof.allowMultiple = true;
 
     this.game.rocketLaunch = this.game.add.audio('rocket-launch');
     this.game.rocketLaunch.volume = 5;
