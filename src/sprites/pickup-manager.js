@@ -14,7 +14,7 @@ class PickupManager {
       'machine-gun-pickup': require('../machine-gun'),
       'pistol-pickup': require('../pistol'),
       'rocket-launcher-pickup': require('../rocket-launcher'),
-    }
+    };
 
     this.timer = game.time.create(false);
 
@@ -29,20 +29,20 @@ class PickupManager {
   }
 
   createRandomPickup() {
-    let randomPickup, Constructor;
+    let randomPickup;
     this.group.forEachAlive((pickup) => pickup.kill());
 
-    randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
-    this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
+    randomPickup = this.randomPickup();
+    this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
 
     if(Math.random() > .2) {
       randomPickup = this.randomPickup();
-      this.addPickup(this.randomPlace(), this.randomPickup(), this.gunConstructors[randomPickup]);
+      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
     }
 
     if(Math.random() > .9) {
       randomPickup = this.randomPickup();
-      this.addPickup(this.randomPlace(), this.randomPickup(), this.gunConstructors[randomPickup]);
+      this.addPickup(this.randomPlace(), randomPickup, this.gunConstructors[randomPickup]);
     }
   }
 
