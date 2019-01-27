@@ -25,7 +25,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('bed2', 'assets/sprites/bed2.png');
     this.game.load.image('desk', 'assets/sprites/desk.png');
     this.game.load.image('chair', 'assets/sprites/chair.png');
-    this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
+    this.game.load.image('beanbag', 'assets/sprites/beanbag.png');
+    this.game.load.image('machine-gun-pickup', 'assets/sprites/machine-gun-pickup.png');
 
     this.game.load.image('beanbag', '/assets/sprites/beanbag.png');
 
@@ -86,6 +87,13 @@ class Gameplay extends Phaser.State {
 
     this.pushable = this.game.add.physicsGroup();
     this.pushable.addMultiple([chair]);
+
+    for (let i = 0 ; i < 3; i++)
+    {
+      let beanbag = this.game.add.sprite(i * 100 + 100, 600, "beanbag");
+      this.pushable.addMultiple([beanbag]);
+    }
+
     this.pushable.setAll('body.collideWorldBounds', true);
 
     // THIS CODE SHOULDN'T BE RUN HERE!
@@ -107,7 +115,7 @@ class Gameplay extends Phaser.State {
     this.players = this.game.add.physicsGroup();
     this.players.addMultiple([this.player1, this.player2]);
 
-    var pickup = new Pickup(this.game, 800, 50, 'pickup', [this.player1, this.player2]);
+    var machineGun = new Pickup(this.game, 720, 50, 'machine-gun-pickup', [this.player1, this.player2]);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
 

@@ -5,7 +5,7 @@ class Pickup extends Phaser.Sprite {
   constructor(game, x, y, key, players) {
     super(game, x, y, key);
 
-    this.scale.set(2);
+    this.scale.set(0.75);
     this.item = new MachineGun(this.game);
     this.players = players; // TODO: Use a group!!!
     this.enableBody = true;
@@ -16,7 +16,7 @@ class Pickup extends Phaser.Sprite {
 
   collect(player, pickup) {
     player.weapon = pickup.item;
-    pickup.kill();
+    //pickup.kill();
   }
 
   update() {
