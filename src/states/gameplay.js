@@ -28,6 +28,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('chair', 'assets/sprites/chair.png');
     this.game.load.image('pickup', 'assets/sprites/floor-chunk.png');
 
+    this.game.load.image('beanbag', '/assets/sprites/beanbag.png');
+
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('boop', 'assets/audio/boop.ogg');
   }
@@ -44,11 +46,16 @@ class Gameplay extends Phaser.State {
     let bed1 = this.game.add.sprite(20, 20, "bed1");
     let bed2 = this.game.add.sprite(820, 20, "bed2");
     let desk = this.game.add.sprite(850, 500, "desk");
-    let chair = this.game.add.sprite(790, 600, "chair");
+
+    let chair = this.game.add.sprite(760, 600, "chair");
 
     this.furniture = this.game.add.physicsGroup();
-    this.furniture.addMultiple([bed1, bed2, desk, chair]);
+    this.furniture.addMultiple([bed1, bed2, desk]);
     this.furniture.setAll('body.immovable', true);
+
+    this.pushable = this.game.add.physicsGroup();
+    this.pushable.addMultiple([chair]);
+    this.pushable.setAll('body.collideWorldBounds', true);
 
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
@@ -88,11 +95,17 @@ class Gameplay extends Phaser.State {
 
     this.game.physics.arcade.collide(this.player1, this.player2);
     this.game.physics.arcade.collide(this.players, this.furniture);
+    this.game.physics.arcade.collide(this.players, this.pushable);
+    this.game.physics.arcade.collide(this.furniture, this.pushable);
 
     if(!this.player1.alive || !this.player2.alive) {
       this.game.state.start('countdown');
     }
 
+    for(let sprite of this.pushable.children) {
+      sprite.body.velocity.x *= 0.8;
+      sprite.body.velocity.y *= 0.8;
+    }
   }
 
   render() {
