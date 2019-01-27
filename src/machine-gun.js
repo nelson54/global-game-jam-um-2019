@@ -17,8 +17,8 @@ class MachineGun extends Gun {
     this.sound = game.snap;
     this.sound.allowMultiple = true;
 
-    this.minParticleScale = 5 ;
-    this.maxParticleScale = 5 ;
+    this.minParticleScale = 3 ;
+    this.maxParticleScale = 3 ;
 
     this.bulletSpeed = 1200;
     this.cooldown = 60;

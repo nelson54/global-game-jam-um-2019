@@ -5,7 +5,7 @@ const MachineGunEffect = require('../effects/machine-gun-effect');
 class WaterBalloon extends Bullet {
   constructor(game, x, y, key) {
     super(game, x, y, 'water-balloon');
-    this.damage = 25;
+    this.damage = 50;
   }
 
   hit(player) {
