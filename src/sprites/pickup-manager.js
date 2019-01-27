@@ -20,7 +20,6 @@ class PickupManager {
 
     //  Set a TimerEvent to occur after 2 seconds
     this.timer.loop(5000, ()=> this.createRandomPickup());
-    this.timer.loop(5000, ()=> this.createRandomPickup());
 //    this.timer.loop(7500, ()=> this.createRandomPickup());
     this.timer.start();
   }
@@ -37,13 +36,13 @@ class PickupManager {
     this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
 
     if(Math.random() > .2) {
-      randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
-      this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
+      randomPickup = this.randomPickup();
+      this.addPickup(this.randomPlace(), this.randomPickup(), this.gunConstructors[randomPickup]);
     }
 
     if(Math.random() > .9) {
-      randomPickup = this.randomPickup(), Constructor = this.gunConstructors[randomPickup];
-      this.addPickup(this.randomPlace(), this.randomPickup(), Constructor);
+      randomPickup = this.randomPickup();
+      this.addPickup(this.randomPlace(), this.randomPickup(), this.gunConstructors[randomPickup]);
     }
   }
 
