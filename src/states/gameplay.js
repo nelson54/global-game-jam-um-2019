@@ -31,13 +31,14 @@ class Gameplay extends Phaser.State {
     this.game.load.image('beanbag', '/assets/sprites/beanbag.png');
 
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
+    this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
     this.game.load.audio('boop', 'assets/audio/boop.ogg');
   }
 
   create() {
     this.recording = this.game.add.audio('boop');
     this.game.boop = this.recording;
-    this.game.snap = this.game.add.audio('snap');
+    this.game.snap = this.game.add.audio('machine-gun');
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 

@@ -9,10 +9,6 @@ class Bullet extends Phaser.Particle {
   constructor(game, x, y, key='normal-bullet') {
     super(game, x, y, key);
     this.damage = 10;
-    //game.physics.arcade.enable(this);
-    //this.body.velocity = new Phaser.Point(200, 0);
-
-    //game.add.existing(this);
   }
 
   update() {
@@ -23,6 +19,5 @@ class Bullet extends Phaser.Particle {
     }
   }
 }
-
 
 module.exports = Bullet;

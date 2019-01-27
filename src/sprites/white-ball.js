@@ -1,11 +1,11 @@
 let Phaser = require('phaser-ce');
 let Bullet = require('./bullet');
 
-class WaterPellet extends Bullet {
+class WhiteBall extends Bullet {
   constructor(game, x, y, key) {
     super(game, x, y, 'white-ball');
-    this.damage = 3;
+    this.damage = 10;
   }
 }
 
-module.exports = WaterPellet;
+module.exports = WhiteBall;
