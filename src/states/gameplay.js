@@ -37,15 +37,16 @@ class Gameplay extends Phaser.State {
 
     // THIS CODE SHOULDN'T BE RUN HERE!
     // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
-    this.input.gamepad.start();
+    let input1 = new Input.XBoxController(this.input.gamepad.pad1);
+    let input2 = new Input.XBoxController(this.input.gamepad.pad2);
 
     this.player1 = new Player(this.game, -120, 0, 16, 12, '#4b46ff', 'player-1');
     this.player1.weapon = new Gun(this.game, 'normal-bullet', 'boop');
-    this.player1.input = new Input.XBoxController(this.input.gamepad.pad1);
+    this.player1.input = input1;
 
     this.player2 = new Player(this.game, 120, 0, 1024 - 80, 12, '#ff4c47', 'player-2');
     this.player2.weapon = new Gun(this.game, 'normal-bullet', 'boop');
-    this.player2.input = new Input.XBoxController(this.input.gamepad.pad2);
+    this.player2.input = input2;
 
     this.player1.enemy = this.player2;
     this.player2.enemy = this.player1;

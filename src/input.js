@@ -11,6 +11,10 @@ class XBoxController {
     this.pad = pad;
   }
 
+  destroy() {
+    this.pad.destroy();
+  }
+
   get connected() {
     return this.pad.connected;
   }
