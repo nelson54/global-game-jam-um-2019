@@ -12,12 +12,21 @@ class Pickup extends Phaser.Sprite {
     this.enableBody = true;
 
     game.physics.arcade.enable(this);
-    game.add.existing(this)
+    game.add.existing(this);
+    this.alpha = 0;
+    game.add.tween(this).to({alpha:1}, 500, "Linear").start();
   }
 
   collect(player) {
     player.weapon = (new this.GunConstructor(this.game)).item;
     this.kill();
+  }
+
+  kill() {
+    game.add.tween(this)
+      .to({alpha:0}, 500, "Linear")
+      .start()
+      .onComplete.add(()=>super.kill());
   }
 
   update() {
