@@ -19,7 +19,7 @@ class Pickup extends Phaser.Sprite {
 
   collect(player) {
     if(this.isLife) {
-      this.player.health += 25;
+      player.hurt(-25);
     } else {
       player.weapon = new this.GunConstructor(this.game);
     }
