@@ -81,16 +81,16 @@ class Gameplay extends Phaser.State {
     bed2.scale.set(0.8);
     bed2.angle = 180;
 
-    let desk1 = this.game.add.sprite(150, 400, "desk");
+    let desk1 = this.game.add.sprite(150, 450, "desk");
     desk1.scale.set(0.8);
     desk1.angle = 270;
-    let desk2 = this.game.add.sprite(1100, 500, "desk");
+    let desk2 = this.game.add.sprite(1150, 500, "desk");
     desk2.scale.set(0.8);
     desk2.angle = 90;
 
-    let chair1 = this.game.add.sprite(150, 475, "chair");
+    let chair1 = this.game.add.sprite(150, 550, "chair");
     chair1.angle = 270;
-    let chair2 = this.game.add.sprite(1150, 350, "chair");
+    let chair2 = this.game.add.sprite(1150, 380, "chair");
     chair2.angle = 90;
 
     this.furniture = this.game.add.physicsGroup();
@@ -102,8 +102,12 @@ class Gameplay extends Phaser.State {
     this.pushable.addMultiple([chair1, chair2]);
 
     this.pushable.addMultiple([
-      this.game.add.sprite(100, 600, "beanbag"),
-      this.game.add.sprite(200, 600, "beanbag")]);
+      this.game.add.sprite(660, 100, "beanbag"),
+      this.game.add.sprite(450, 310, "beanbag"),
+      this.game.add.sprite(360, 570, "beanbag"),
+      this.game.add.sprite(1090, 120, "beanbag"),
+      this.game.add.sprite(940, 320, "beanbag"),
+      this.game.add.sprite(670, 600, "beanbag")]);
 
     this.pushable.setAll('body.collideWorldBounds', true);
     this.pushable.setAll('anchor', new Phaser.Point(0.5, 0.5));
