@@ -8,6 +8,7 @@ const Buttons = {
 
 class XBoxController {
   constructor(pad) {
+    this.active = true;
     this.pad = pad;
   }
 

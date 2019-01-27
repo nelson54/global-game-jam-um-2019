@@ -55,18 +55,24 @@ class Player extends Phaser.Sprite {
 
   pillowHit(direction = {x: 1, y:-1}) {
     let hitForce = 1000;
-    this.body.velocity = new Phaser.Point(hitForce * direction.x, hitForce * direction.y)
+    this.body.velocity = new Phaser.Point(hitForce * direction.x, hitForce * direction.y);
+    this.controller.active = false;
+    if(!this.controlTimer || !this.controlTimer.running) {
+      this.controlTimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
+        this.controller.active = true;
+      });
+    }
   }
 
   update() {
     super.update();
 
-    if (this.input) {
-      this.body.velocity.x = this.input.strafe.x * this.movementSpeed;
-      this.body.velocity.y = this.input.strafe.y * this.movementSpeed;
+    if (this.controller && this.controller.active) {
+      this.body.velocity.x = this.controller.strafe.x * this.movementSpeed;
+      this.body.velocity.y = this.controller.strafe.y * this.movementSpeed;
 
-      if (this.input.lookMagnitude > 0) {
-        let look = this.input.lookNormalized;
+      if (this.controller.lookMagnitude > 0) {
+        let look = this.controller.lookNormalized;
         this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
         this.weapon.use();
       }
