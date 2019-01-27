@@ -8,7 +8,7 @@ class Player extends Phaser.Sprite {
     this.anchor.set(.5, .5);
     this.scale.set(.5);
     this.weapon = null;
-    this.health = 100;
+    this.health = 300;
     this.movementSpeed = 300;
 
     this.pillow = new Pillow(game, 0, 0);
