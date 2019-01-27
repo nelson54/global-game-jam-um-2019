@@ -9,7 +9,7 @@ class JamGame extends Phaser.Game {
     super(1280, 720, Phaser.AUTO, document.querySelector('body'), {
       preload() {
         this.game.state.add('countdown', new Countdown());
-        this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;
       },
