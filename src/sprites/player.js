@@ -53,6 +53,11 @@ class Player extends Phaser.Sprite {
     this.healthText.text = this.health;
   }
 
+  pillowHit(direction = {x: 1, y:-1}) {
+    let hitForce = 1000;
+    this.body.velocity = new Phaser.Point(hitForce * direction.x, hitForce * direction.y)
+  }
+
   update() {
     super.update();
 

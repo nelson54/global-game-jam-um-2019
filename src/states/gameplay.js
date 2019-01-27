@@ -48,6 +48,10 @@ class Gameplay extends Phaser.State {
     this.game.backgroundMusic.volume = .4;
     this.game.backgroundMusic.play();
 
+    this.game.input.enabled = true;
+    let space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    space.onDown.add(()=> this.player1.pillowHit());
+
     this.game.boop = this.recording = this.game.add.audio('boop');
     this.recording.volume = 5;
 
