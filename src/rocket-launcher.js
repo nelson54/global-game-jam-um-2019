@@ -1,11 +1,11 @@
-const Phaser = require('phaser-ce'),
-  Bullet = require('./sprites/bullet');
+const Phaser = require('phaser-ce');
+const Gun = require('./gun');
+const WaterBalloon = require('./sprites/water-balloon');
+const WhiteBall = require('./sprites/white-ball');
 
-class RocketLauncher extends Phaser.Particles.Arcade.Emitter {
-  constructor(game) {
-    super(game, 100, -100);
+class RocketLauncher extends Gun { constructor(game) { super(game);
 
-    this.particleClass = Bullet;
+    this.particleClass = WaterBalloon;
     this.maxParticles = 100;
 
     this.makeParticles(undefined, undefined, undefined, undefined, true);
@@ -13,38 +13,10 @@ class RocketLauncher extends Phaser.Particles.Arcade.Emitter {
 
     this.sound = game.boop;
 
-    this.bulletSpeed = 800;
-    this.cooldown = 200;
+    this.bulletSpeed = 500;
+    this.cooldown = 1000;
 
     game.add.existing(this);
-  }
-
-  equipTo(player) {
-    this.player = player;
-  }
-
-  unequipFrom(player) {
-    this.player = null;
-  }
-
-  use() {
-    if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
-      this.emitParticle();
-      this.sound.play();
-      this._lastFire = Date.now();
-    }
-  }
-
-  update() {
-    if (this.player) {
-      this.x = this.player.x;
-      this.y = this.player.y;
-
-      this.maxParticleSpeed = new Phaser.Point(Math.sin(this.player.rotation) * this.bulletSpeed, -Math.cos(this.player.rotation) * this.bulletSpeed);
-      this.minParticleSpeed = this.maxParticleSpeed;
-
-      this.forEachAlive((particle) => particle.update())
-    }
   }
 }
 
