@@ -6,9 +6,6 @@ const Pistol = require('../pistol');
 const Pickup = require('../sprites/pickup');
 const Input = require('../input');
 
-const WaterBalloonEffect = require('../effects/water-balloon-effect');
-const MachineGunEffect = require('../effects/machine-gun-effect');
-
 class Gameplay extends Phaser.State {
   preload() {
     this.game.state.add('countdown', new (require('./countdown'))());
@@ -84,8 +81,6 @@ class Gameplay extends Phaser.State {
     this.time.advancedTiming = true;
 
     this.frame = 0;
-    new WaterBalloonEffect(this.game, 200, 200);
-    new MachineGunEffect(this.game, 300, 300)
   }
 
   update() {

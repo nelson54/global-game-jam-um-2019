@@ -12,11 +12,16 @@ class MachineGun extends Gun {
     this.makeParticles();
     this.gravity = 0;
 
+
+
     this.sound = game.snap;
     this.sound.allowMultiple = true;
 
+    this.minParticleScale = 5 ;
+    this.maxParticleScale = 5 ;
+
     this.bulletSpeed = 1200;
-    this.cooldown = 5;
+    this.cooldown = 60;
 
     game.add.existing(this);
   }

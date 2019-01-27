@@ -8,9 +8,9 @@ class WaterPellet extends Bullet {
     this.damage = 0.5;
   }
 
-  hit(player, bullet) {
-    super.hit(player, bullet);
-    new MachineGunEffect(this.game, bullet.x, bullet.y)
+  hit(player) {
+    super.hit(player);
+    new MachineGunEffect(this.game, this.x, this.y)
   }
 }
 

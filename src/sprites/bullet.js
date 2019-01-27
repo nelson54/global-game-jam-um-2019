@@ -7,15 +7,33 @@ class Bullet extends Phaser.Particle {
     this.damage = 10;
   }
 
-  hit(player, bullet) {
-    bullet.kill();
-    player.hurt(bullet.damage);
-
+  hit(player) {
+    if(player) player.hurt(this.damage);
+    this.kill();
   }
 
   update() {
-    if(this.alive && this.overlap(this.parent.player.enemy)) {
-      this.hit(this.parent.player.enemy, this);
+    if(this.alive) {
+
+
+      if (this.overlap(this.parent.player.enemy)) {
+        this.hit(this.parent.player.enemy);
+        return;
+      }
+
+      for(let furniture of this.game.state.getCurrentState().furniture.children) {
+        if(this.overlap(furniture)) {
+          this.hit();
+          return;
+        }
+      }
+
+      for(let pushable of this.game.state.getCurrentState().pushable.children) {
+        if(this.overlap(pushable)) {
+          this.hit();
+          return;
+        }
+      }
     }
   }
 }

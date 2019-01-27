@@ -12,11 +12,11 @@ class MachineGunEffect extends Phaser.Particles.Arcade.Emitter {
 
     this.setAlpha(1, .3, 1000);
     this.minParticleScale = .1;
-    this.maxParticleScale = .3;
+    this.maxParticleScale = .6;
 
     //this.start(false, 500, 30, 1);
 
-    this.flow(3000, 50, 50, 50)
+    this.flow(1000, 250, 20, 20)
   }
 }
 
