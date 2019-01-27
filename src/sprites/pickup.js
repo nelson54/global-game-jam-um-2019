@@ -15,9 +15,9 @@ class Pickup extends Phaser.Sprite {
     game.add.existing(this)
   }
 
-  collect(player, pickup) {
+  collect(player) {
     player.weapon = (new this.GunConstructor(this.game)).item;
-    //pickup.kill();
+    this.kill();
   }
 
   update() {
