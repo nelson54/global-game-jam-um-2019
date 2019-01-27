@@ -31,6 +31,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('beanbag', 'assets/sprites/beanbag.png');
     this.game.load.image('machine-gun-pickup', 'assets/sprites/machine-gun-pickup.png');
     this.game.load.image('rocket-launcher-pickup', 'assets/sprites/rocket-launcher-pickup.png');
+    this.game.load.image('pistol-pickup', 'assets/sprites/pistol-pickup.png');
 
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
