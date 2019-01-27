@@ -83,17 +83,17 @@ class Gameplay extends Phaser.State {
 
     let desk1 = this.game.add.sprite(150, 450, "desk");
     desk1.scale.set(0.6);
-    desk1.angle = 270;
+    desk1.angle = 180;
     let desk2 = this.game.add.sprite(1150, 450, "desk");
     desk2.scale.set(0.6);
-    desk2.angle = 90;
+    desk2.angle = 0;
 
     let chair1 = this.game.add.sprite(150, 530, "chair");
     chair1.scale.set(0.6);
-    chair1.angle = 270;
+    chair1.angle = 180;
     let chair2 = this.game.add.sprite(1150, 380, "chair");
     chair2.scale.set(0.6);
-    chair2.angle = 90;
+    chair2.angle = 0;
 
     this.furniture = this.game.add.physicsGroup();
     this.furniture.addMultiple([bed1, bed2, desk1, desk2]);
