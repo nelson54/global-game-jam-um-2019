@@ -18,7 +18,8 @@ class PickupManager {
 
     this.timer = game.time.create(false);
 
-    //  Set a TimerEvent to occur after 2 seconds
+    this.createRandomPickup();
+    //  Set a TimerEvent to occur after 5 seconds
     this.timer.loop(5000, ()=> this.createRandomPickup());
 //    this.timer.loop(7500, ()=> this.createRandomPickup());
     this.timer.start();

@@ -16,7 +16,7 @@ class EndGame extends Phaser.State {
     let timerTween = this.game.add.tween(text);
     timerTween.to({alpha:1}, 3000, "Linear");
     timerTween.onComplete.add(()=> {
-      this.game.state.start('countdown', true, true);
+      this.game.state.start('gameplay', true, true);
     });
     timerTween.start();
   }

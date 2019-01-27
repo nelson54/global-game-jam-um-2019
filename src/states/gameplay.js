@@ -133,13 +133,35 @@ class Gameplay extends Phaser.State {
     this.players = this.game.add.physicsGroup();
     this.players.addMultiple([this.player1, this.player2]);
 
-    this.pickupManager = new PickupManager(this.game);
-
-
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
 
     this.frame = 0;
+
+    this.peaceEnabled = true;
+    this.peaceTimerSeconds = 10;
+    this.peaceTimerText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Prepare!", {
+      "fill": "white",
+      "font": "bold 40pt Comic Sans MS",
+      "strokeThickness": 8
+    });
+    this.peaceTimerText.anchor.set(0.5, 0.5);
+    this.peaceTimerCountdown = this.game.add.tween(this.peaceTimerText);
+    this.peaceTimerCountdown.to({ alpha: 0.0 }, 1000, Phaser.Easing.Sinusoidal.Out);
+    this.peaceTimerCountdown.onComplete.add(() => {
+      this.peaceTimerSeconds -= 1;
+      this.peaceTimerText.alpha = 1.0;
+      if (this.peaceTimerSeconds > 0) {
+        this.peaceTimerText.text = String(this.peaceTimerSeconds);
+        this.peaceTimerCountdown.start();
+      } else {
+        this.peaceEnabled = false;
+        this.peaceTimerText.text = "Attack!";
+        this.game.add.tween(this.peaceTimerText).to({ alpha: 0.0 }, 2000, Phaser.Easing.Sinusoidal.Out).start();
+        this.pickupManager = new PickupManager(this.game);
+      }
+    }, this);
+    this.peaceTimerCountdown.start();
   }
 
   update() {
