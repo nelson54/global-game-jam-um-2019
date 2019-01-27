@@ -6,6 +6,9 @@ const Pistol = require('../pistol');
 const Pickup = require('../sprites/pickup');
 const Input = require('../input');
 
+const WaterBalloonEffect = require('../effects/water-balloon-effect');
+const MachineGunEffect = require('../effects/machine-gun-effect');
+
 class Gameplay extends Phaser.State {
   preload() {
     this.game.state.add('countdown', new (require('./countdown'))());
@@ -38,10 +41,10 @@ class Gameplay extends Phaser.State {
 
     this.game.add.tileSprite(0, 0, 1024, 768, 'carpet');
 
-    var bed1 = this.game.add.sprite(20, 20, "bed1");
-    var bed2 = this.game.add.sprite(820, 20, "bed2");
-    var desk = this.game.add.sprite(850, 500, "desk");
-    var chair = this.game.add.sprite(790, 600, "chair");
+    let bed1 = this.game.add.sprite(20, 20, "bed1");
+    let bed2 = this.game.add.sprite(820, 20, "bed2");
+    let desk = this.game.add.sprite(850, 500, "desk");
+    let chair = this.game.add.sprite(790, 600, "chair");
 
     this.furniture = this.game.add.physicsGroup();
     this.furniture.addMultiple([bed1, bed2, desk, chair]);
@@ -73,6 +76,8 @@ class Gameplay extends Phaser.State {
     this.time.advancedTiming = true;
 
     this.frame = 0;
+    new WaterBalloonEffect(this.game, 200, 200);
+    new MachineGunEffect(this.game, 300, 300)
   }
 
   update() {

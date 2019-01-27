@@ -6,8 +6,8 @@ function hit(player, bullet) {
 }
 
 class Bullet extends Phaser.Particle {
-  constructor(game, x, y, key) {
-    super(game, x, y, 'white-ball');
+  constructor(game, x, y, key='normal-bullet') {
+    super(game, x, y, key);
     this.damage = 10;
     //game.physics.arcade.enable(this);
     //this.body.velocity = new Phaser.Point(200, 0);
