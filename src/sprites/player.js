@@ -68,7 +68,7 @@ class Player extends Phaser.Sprite {
   }
 
   pillowHit(direction = {x: 1, y:-1}) {
-    let hitForce = 1000;
+    let hitForce = 100;
     this.body.velocity = new Phaser.Point(hitForce * direction.x, hitForce * direction.y);
     this.controller.active = false;
     if(!this.controlTimer || !this.controlTimer.running) {
@@ -80,6 +80,10 @@ class Player extends Phaser.Sprite {
 
   update() {
     super.update();
+
+    if(this.pillowSwinging && this.pillow.overlap(this.enemy)) {
+      this.enemy.pillowHit((new Phaser.Point(0, -1)).rotate(0, 0, this.angle, false, 1));
+    }
 
     if (this.controller && this.controller.active) {
       this.body.velocity.x = this.controller.strafe.x * this.movementSpeed;

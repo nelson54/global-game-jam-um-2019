@@ -94,10 +94,10 @@ class XBoxController {
         return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_TRIGGER) || this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
         break;
       case Buttons.SECONDARY:
-        return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
         break;
       case Buttons.TERTIARY:
-        return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
         break;
     }
 
