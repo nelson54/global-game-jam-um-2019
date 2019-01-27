@@ -160,6 +160,14 @@ class Gameplay extends Phaser.State {
       }
     }, this);
     this.peaceTimerCountdown.start();
+
+    this.game.input.activePointer.leftButton.onDown.add(() => {
+      if (this.game.scale.isFullScreen) {
+        this.game.scale.stopFullScreen();
+      } else {
+        this.game.scale.startFullScreen(false);
+      }
+    });
   }
 
   update() {
