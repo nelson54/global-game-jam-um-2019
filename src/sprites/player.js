@@ -22,7 +22,12 @@ class Player extends Phaser.Sprite {
       text_x,
       text_y,
       null,
-      {"fill": text_color, "align": "center", "font": "bold 20pt Comic Sans MS"});
+      {
+        "fill": text_color,
+        "align": "center",
+        "font": "bold 20pt Comic Sans MS",
+        "strokeThickness": 8
+      });
     this.hurt(0); // Get things started.
   }
 
