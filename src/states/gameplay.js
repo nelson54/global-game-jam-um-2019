@@ -152,6 +152,7 @@ class Gameplay extends Phaser.State {
     this.game.physics.arcade.collide(this.players, this.furniture);
     this.game.physics.arcade.collide(this.players, this.pushable);
     this.game.physics.arcade.collide(this.furniture, this.pushable);
+    this.game.physics.arcade.collide(this.pushable, this.pushable);
 
     if(!this.player1.alive) {
       this.game.state.start('end-game2');
