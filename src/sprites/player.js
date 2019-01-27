@@ -1,5 +1,6 @@
 const Phaser = require('phaser-ce');
 const Input = require('../input');
+const Pillow = require('./pillow');
 
 class Player extends Phaser.Sprite {
   constructor(game, x, y, text_x, text_y, text_color, key) {
@@ -9,6 +10,19 @@ class Player extends Phaser.Sprite {
     this.weapon = null;
     this.health = 100;
     this.movementSpeed = 300;
+
+    this.pillow = new Pillow(game, -50, 30);
+    this.pillow.anchor.set(-2, 0.5);
+    this.addChild(this.pillow);
+    this.pillowSwinging = false;
+    this.pillowSwing = game.add.tween(this.pillow);
+    this.pillowSwing.to({ rotation: -1.0 }, 200, Phaser.Easing.Exponential.In);
+    this.pillowSwing.onComplete.add(() => {
+      let next = game.add.tween(this.pillow);
+      next.to({ rotation: 0 }, 800, Phaser.Easing.Cubic.InOut);
+      next.onComplete.add(() => this.pillowSwinging = false, this);
+      next.start();
+    }, this);
 
     game.physics.arcade.enable(this);
 
@@ -75,6 +89,11 @@ class Player extends Phaser.Sprite {
         let look = this.controller.lookNormalized;
         this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
         this.weapon.use();
+      }
+
+      if (this.input.justPressed(Input.Buttons.SECONDARY) && !this.pillowSwinging) {
+        this.pillowSwinging = true;
+        this.pillowSwing.start();
       }
     }
 

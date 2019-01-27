@@ -18,7 +18,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('droplet', 'assets/sprites/droplet.png');
     this.game.load.image('water-balloon', 'assets/sprites/water-balloon.png');
 
-    this.game.load.image('pillow', 'asset/sprites/pillow.png');
+    this.game.load.image('pillow', 'assets/sprites/pillow.png');
 
     this.game.load.image('carpet', 'assets/sprites/carpet.png');
     this.game.load.image('bed1', 'assets/sprites/bed1.png');
