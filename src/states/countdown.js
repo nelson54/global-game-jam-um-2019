@@ -14,6 +14,21 @@ class Countdown extends Phaser.State {
   }
 
   create() {
+    this.game.input.enabled = true;
+    this.game.input.onDown.add(() => {
+
+      if (this.game.scale.isFullScreen)
+      {
+        this.game.scale.stopFullScreen();
+      }
+      else
+      {
+        this.game.scale.startFullScreen(false);
+      }
+
+    }, this);
+
+
     this.game.stage.backgroundColor = "#30b3ff";
     let centerX = this.game.world.centerX,
       centerY = this.game.world.centerY;
