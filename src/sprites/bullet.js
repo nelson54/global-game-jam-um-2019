@@ -1,9 +1,5 @@
 let Phaser = require('phaser-ce');
 
-function hit(player, bullet) {
-  bullet.kill();
-  player.hurt(bullet.damage);
-}
 
 class Bullet extends Phaser.Particle {
   constructor(game, x, y, key='normal-bullet') {
@@ -11,11 +7,15 @@ class Bullet extends Phaser.Particle {
     this.damage = 10;
   }
 
+  hit(player, bullet) {
+    bullet.kill();
+    player.hurt(bullet.damage);
+
+  }
+
   update() {
-    if(this.alive) {
-      if(this.overlap(this.parent.player.enemy)) {
-        hit(this.parent.player.enemy, this);
-      }
+    if(this.alive && this.overlap(this.parent.player.enemy)) {
+      this.hit(this.parent.player.enemy, this);
     }
   }
 }
