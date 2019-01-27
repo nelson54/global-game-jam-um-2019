@@ -27,10 +27,10 @@ class Pickup extends Phaser.Sprite {
   }
 
   kill() {
+    super.kill();
     game.add.tween(this)
       .to({alpha:0}, 500, "Linear")
-      .start()
-      .onComplete.add(()=>super.kill());
+      .start();
   }
 
   update() {
