@@ -11,18 +11,28 @@ class Player extends Phaser.Sprite {
     this.health = 100;
     this.movementSpeed = 300;
 
-    this.pillow = new Pillow(game, -20, 30);
-    this.pillow.anchor.set(-1, 0.5);
+    this.pillow = new Pillow(game, 0, 0);
+    this.pillow.anchor.set(-0.5, 0.25);
     this.addChild(this.pillow);
     this.pillowSwinging = false;
-    this.pillowSwing = game.add.tween(this.pillow);
-    this.pillowSwing.to({ rotation: -2.0 }, 200, Phaser.Easing.Exponential.In);
-    this.pillowSwing.onComplete.add(() => {
+    this.pillowSwingUp = game.add.tween(this.pillow);
+    this.pillowSwingUp.to({ rotation: -2.0 }, 200, Phaser.Easing.Exponential.In);
+    this.pillowSwingUp.onComplete.add(() => {
       let next = game.add.tween(this.pillow);
       next.to({ rotation: 0 }, 800, Phaser.Easing.Cubic.InOut);
       next.onComplete.add(() => this.pillowSwinging = false, this);
       next.start();
     }, this);
+    this.pillowSwingDown = game.add.tween(this.pillow);
+    this.pillowSwingDown.to({ rotation: 2.0 }, 200, Phaser.Easing.Exponential.In);
+    this.pillowSwingDown.onComplete.add(() => {
+      let next = game.add.tween(this.pillow);
+      next.to({ rotation: 0 }, 800, Phaser.Easing.Cubic.InOut);
+      next.onComplete.add(() => this.pillowSwinging = false, this);
+      next.start();
+    }, this);
+
+    this.look = 0.0;
 
     game.physics.arcade.enable(this);
 
@@ -81,7 +91,19 @@ class Player extends Phaser.Sprite {
     super.update();
 
     if(this.pillowSwinging && this.pillow.overlap(this.enemy)) {
-      this.enemy.pillowHit((new Phaser.Point(0, -1)).rotate(0, 0, this.angle, false, 1));
+      this.enemy.pillowHit((new Phaser.Point(0, -1)).rotate(0, 0, this.look, false, 1));
+    }
+
+    // Flip depending on where we're looking
+    if (this.look < 0 || this.look > Math.PI) {
+      this.scale.x = -1;
+    } else {
+      this.scale.x = 1;
+    }
+    if (this.look > Math.PI / 2) {
+      this.pillow.scale.y = -1;
+    } else {
+      this.pillow.scale.y = 1;
     }
 
     if (this.controller && this.controller.active) {
@@ -90,7 +112,7 @@ class Player extends Phaser.Sprite {
 
       if (this.controller.lookMagnitude > 0) {
         let look = this.controller.lookNormalized;
-        this.rotation = Math.atan2(look.y, look.x) + Math.PI / 2;
+        this.look = Math.atan2(look.y, look.x) + Math.PI / 2;
       }
 
       if (this.controller.isDown(Input.Buttons.PRIMARY)) {
@@ -99,7 +121,11 @@ class Player extends Phaser.Sprite {
 
       if (this.controller.justPressed(Input.Buttons.SECONDARY) && !this.pillowSwinging) {
         this.pillowSwinging = true;
-        this.pillowSwing.start();
+        if (this.pillow.scale.y > 0) {
+          this.pillowSwingUp.start();
+        } else {
+          this.pillowSwingDown.start();
+        }
       }
     }
 
