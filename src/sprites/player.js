@@ -6,7 +6,6 @@ class Player extends Phaser.Sprite {
   constructor(game, x, y, text_x, text_y, text_color, key) {
     super(game, game.world.centerX + x, game.world.centerY + y, key);
     this.anchor.set(.5, .5);
-    this.scale.set(.5);
     this.weapon = null;
     this.health = 100;
     this.movementSpeed = 300;
@@ -28,7 +27,6 @@ class Player extends Phaser.Sprite {
 
     this.enableBody = true;
     this.body.collideWorldBounds=true;
-    this.body.setCircle(this.width);
 
     game.add.existing(this);
 
