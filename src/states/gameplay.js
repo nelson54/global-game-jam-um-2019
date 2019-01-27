@@ -4,6 +4,8 @@ const Player = require('../sprites/player');
 const Gun = require('../gun');
 const Pistol = require('../pistol');
 const Pickup = require('../sprites/pickup');
+const MachineGun = require('../machine-gun');
+const RocketLauncher = require('../rocket-launcher');
 const Input = require('../input');
 
 class Gameplay extends Phaser.State {
@@ -27,8 +29,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('chair', 'assets/sprites/chair.png');
     this.game.load.image('beanbag', 'assets/sprites/beanbag.png');
     this.game.load.image('machine-gun-pickup', 'assets/sprites/machine-gun-pickup.png');
-
-    this.game.load.image('beanbag', '/assets/sprites/beanbag.png');
+    this.game.load.image('rocket-launcher-pickup', 'assets/sprites/rocket-launcher-pickup.png');
 
     this.game.load.audio('snap', 'assets/audio/snap.mp3');
     this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
@@ -69,7 +70,6 @@ class Gameplay extends Phaser.State {
 
     this.game.rocketLaunch = this.game.add.audio('rocket-launch');
     this.game.rocketLaunch.volume = 5;
-
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -135,9 +135,9 @@ class Gameplay extends Phaser.State {
 
     var machineGun = new Pickup(this.game, 640, 360, 'machine-gun-pickup', [this.player1, this.player2]);
     machineGun.anchor = new Phaser.Point(0.5, 0.5);
+    var rocketLauncher = new Pickup(this.game, 50, 500, 'rocket-launcher-pickup', [this.player1, this.player2], new RocketLauncher(this.game));
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
-
     this.time.advancedTiming = true;
 
     this.frame = 0;
