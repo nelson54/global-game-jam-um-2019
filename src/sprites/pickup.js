@@ -18,12 +18,14 @@ class Pickup extends Phaser.Sprite {
   }
 
   collect(player) {
-    if(this.isLife) {
-      player.hurt(-25);
-    } else {
-      player.weapon = new this.GunConstructor(this.game);
+    if(this.alive) {
+      if (this.isLife) {
+        player.hurt(-25);
+      } else {
+        player.weapon = new this.GunConstructor(this.game);
+      }
+      this.kill();
     }
-    this.kill();
   }
 
   kill() {
