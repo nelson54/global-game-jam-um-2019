@@ -2,9 +2,9 @@ var Phaser = require('phaser-ce');
 var MachineGun = require('../machine-gun');
 
 class Pickup extends Phaser.Sprite {
-  constructor(game, x, y, key, GunConstructor) {
+  constructor(game, x, y, key, GunConstructor, isLife) {
     super(game, x, y, key);
-
+    this.isLife = isLife;
     this.scale.set(0.75);
     this.GunConstructor = GunConstructor;
     let state = this.game.state.getCurrentState();
@@ -18,7 +18,11 @@ class Pickup extends Phaser.Sprite {
   }
 
   collect(player) {
-    player.weapon = new this.GunConstructor(this.game);
+    if(this.isLife) {
+      this.player.health += 25;
+    } else {
+      player.weapon = new this.GunConstructor(this.game);
+    }
     this.kill();
   }
 
