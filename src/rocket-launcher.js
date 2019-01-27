@@ -16,6 +16,9 @@ class RocketLauncher extends Gun { constructor(game) { super(game);
     this.bulletSpeed = 500;
     this.cooldown = 1000;
 
+    this.minParticleScale = .6;
+    this.maxParticleScale = .6;
+
     game.add.existing(this);
   }
 }
