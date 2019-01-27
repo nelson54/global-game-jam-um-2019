@@ -47,8 +47,8 @@ class PickupManager {
     }
   }
 
-  addPickup(location, randomPickup, Constructor) {
-    let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor);
+  addPickup(location, randomPickup, Constructor, isLife) {
+    let pickup = new Pickup(this.game, location.x, location.y, randomPickup, Constructor, isLife);
     this.group.add(pickup)
   }
 
