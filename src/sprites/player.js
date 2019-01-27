@@ -16,7 +16,7 @@ class Player extends Phaser.Sprite {
     this.addChild(this.pillow);
     this.pillowSwinging = false;
     this.pillowSwing = game.add.tween(this.pillow);
-    this.pillowSwing.to({ rotation: -1.0 }, 200, Phaser.Easing.Exponential.In);
+    this.pillowSwing.to({ rotation: -2.0 }, 200, Phaser.Easing.Exponential.In);
     this.pillowSwing.onComplete.add(() => {
       let next = game.add.tween(this.pillow);
       next.to({ rotation: 0 }, 800, Phaser.Easing.Cubic.InOut);
@@ -91,7 +91,7 @@ class Player extends Phaser.Sprite {
         this.weapon.use();
       }
 
-      if (this.input.justPressed(Input.Buttons.SECONDARY) && !this.pillowSwinging) {
+      if (this.controller.justPressed(Input.Buttons.SECONDARY) && !this.pillowSwinging) {
         this.pillowSwinging = true;
         this.pillowSwing.start();
       }
