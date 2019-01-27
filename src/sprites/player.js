@@ -32,6 +32,23 @@ class Player extends Phaser.Sprite {
       next.start();
     }, this);
 
+    this.disabledFlashCount = 5;
+    this.disabledFlash = game.add.tween(this);
+    this.disabledFlash.to({ alpha: 0.5 }, 1 / 6 * 1000, Phaser.Easing.Exponential.InOut);
+    this.disabledFlash.onComplete.add(() => {
+      let next = game.add.tween(this);
+      next.to({ alpha: 1.0 }, 1 / 6 * 1000, Phaser.Easing.Exponential.InOut);
+      next.onComplete.add(() => {
+        this.disabledFlashCount -= 1;
+        if (this.disabledFlashCount > 0) {
+          this.disabledFlash.start();
+        } else {
+          this.disabledFlashCount = 5;
+        }
+      }, this);
+      next.start();
+    }, this);
+
     this.look = 0.0;
 
     game.physics.arcade.enable(this);
@@ -80,9 +97,12 @@ class Player extends Phaser.Sprite {
     let hitForce = 100;
     this.body.velocity = new Phaser.Point(hitForce * direction.x, hitForce * direction.y);
     this.controller.active = false;
-    if(!this.controlTimer || !this.controlTimer.running) {
+
+    if(!this.controlTimer || !this.controlTimer.timer.running) {
+      this.disabledFlash.start();
       this.controlTimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
         this.controller.active = true;
+        this.controlTimer = null;
       });
     }
   }
