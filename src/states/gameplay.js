@@ -155,7 +155,11 @@ class Gameplay extends Phaser.State {
     this.game.physics.arcade.collide(this.players, this.pushable);
     this.game.physics.arcade.collide(this.furniture, this.pushable);
 
-    if(!this.player1.alive || !this.player2.alive) {
+    if(!this.player1.alive) {
+      alert('Player 2 Wins');
+      this.game.state.start('countdown');
+    } else if (!this.player2.alive) {
+      alert('Player 1 Wins');
       this.game.state.start('countdown');
     }
 
