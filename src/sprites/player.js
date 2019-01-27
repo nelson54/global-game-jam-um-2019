@@ -115,7 +115,7 @@ class Player extends Phaser.Sprite {
         this.look = Math.atan2(look.y, look.x) + Math.PI / 2;
       }
 
-      if (this.controller.isDown(Input.Buttons.PRIMARY)) {
+      if (this.controller.isDown(Input.Buttons.PRIMARY) && this.weapon) {
         this.weapon.use();
       }
 
