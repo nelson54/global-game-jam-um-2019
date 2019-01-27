@@ -32,6 +32,11 @@ class Player extends Phaser.Sprite {
       next.start();
     }, this);
 
+    this.arrow = game.add.sprite(0, 0, 'arrow');
+    this.arrow.anchor.set(0.5, 3.0);
+    this.arrow.scale.set(0.3);
+    this.addChild(this.arrow);
+
     this.disabledFlashCount = 5;
     this.disabledFlash = game.add.tween(this);
     this.disabledFlash.to({ alpha: 0.5 }, 1 / 6 * 1000, Phaser.Easing.Exponential.InOut);
@@ -133,6 +138,8 @@ class Player extends Phaser.Sprite {
       if (this.controller.lookMagnitude > 0) {
         let look = this.controller.lookNormalized;
         this.look = Math.atan2(look.y, look.x) + Math.PI / 2;
+        this.arrow.rotation = this.look * ((this.look < 0 || this.look > Math.PI) ? -1 : 1);
+
       }
 
       if (this.controller.isDown(Input.Buttons.PRIMARY) && this.weapon) {

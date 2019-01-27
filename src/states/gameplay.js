@@ -14,6 +14,8 @@ class Gameplay extends Phaser.State {
     this.game.load.spritesheet('player-1', '/assets/sprites/player-1.png', 50, 99);
     this.game.load.spritesheet('player-2', '/assets/sprites/player-2.png', 50, 99);
 
+    this.game.load.image('arrow', '/assets/sprites/arrow.png');
+
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('white-ball', 'assets/sprites/white-ball.png');
     this.game.load.image('droplet', 'assets/sprites/droplet.png');
